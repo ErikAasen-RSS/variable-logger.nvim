@@ -17,10 +17,10 @@ function M.log_variable(prefix)
   local yanked_text = vim.fn.getreg('"')
   local label = yanked_text
 
-  if M.config.prefix ~= nil then
-    label = M.config.prefix .. label
-  elseif prefix ~= nil then
+  if prefix ~= nil then
     label = prefix .. label
+  elseif M.config.prefix ~= nil then
+    label = M.config.prefix .. label
   end
 
   vim.fn.setreg('"', string.format("console.log('%s', %s)\n", label, yanked_text))
