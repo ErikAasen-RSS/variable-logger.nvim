@@ -23,7 +23,7 @@ function M.log_variable(prefix)
     label = prefix .. label
   end
 
-  vim.fn.setreg('"', string.format("console.log(%s, '%s', %s)\n", label, yanked_text, yanked_text))
+  vim.fn.setreg('"', string.format("console.log('%s', %s)\n", label, yanked_text))
   vim.api.nvim_win_set_cursor(0, current_position)
 end
 
