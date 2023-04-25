@@ -1,5 +1,5 @@
 local default_config = {
-  prefix = '',
+  prefix = "",
 }
 
 local M = {}
@@ -15,7 +15,15 @@ function M.log_variable(prefix)
   local current_position = vim.api.nvim_win_get_cursor(0)
   vim.cmd("normal! viwy")
   local yanked_text = vim.fn.getreg('"')
-  vim.fn.setreg('"', string.format("console.log(%s, %s, '%s', %s)\n", M.config.prefix, prefix, yanked_text, yanked_text))
+  local label = yanked_text
+
+  if M.config.prefix ~= nil then
+    label = M.config.prefix .. label
+  elseif prefix ~= nil then
+    label = prefix .. label
+  end
+
+  vim.fn.setreg('"', string.format("console.log(%s, '%s', %s)\n", label, yanked_text, yanked_text))
   vim.api.nvim_win_set_cursor(0, current_position)
 end
 
