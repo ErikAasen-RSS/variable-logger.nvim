@@ -1,5 +1,5 @@
 local default_config = {
-  prefix = {},
+  prefix = '',
 }
 
 local M = {}
